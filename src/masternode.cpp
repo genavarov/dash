@@ -128,7 +128,7 @@ CMasternode::CollateralStatus CMasternode::CheckCollateral(const COutPoint& outp
         return COLLATERAL_UTXO_NOT_FOUND;
     }
 
-    if(coins.vout[outpoint.n].nValue != 1 * COIN) { //1000
+    if(coins.vout[outpoint.n].nValue != 10000 * COIN) { //1000
         return COLLATERAL_INVALID_AMOUNT;
     }
 

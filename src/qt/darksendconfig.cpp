@@ -69,7 +69,7 @@ void DarksendConfig::clickMax()
     configure(true, 1, 16);
 
     QString strAmount(BitcoinUnits::formatWithUnit(
-        model->getOptionsModel()->getDisplayUnit(), 1 * COIN));
+        model->getOptionsModel()->getDisplayUnit(), 10000 * COIN));
     QMessageBox::information(this, tr("PrivateSend Configuration"),
         tr(
             "PrivateSend was successfully set to maximum (%1 and 16 rounds). You can change this at any time by opening Dash's configuration screen."
