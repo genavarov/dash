@@ -137,7 +137,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../dash.qrc"/>
+  <include location="../bash.qrc"/>
  </resources>
  <connections/>
 </ui>
