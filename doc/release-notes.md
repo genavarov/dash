@@ -318,7 +318,7 @@ Detailed [change log](https://github.com/genavarov/dashcash/compare/v0.12.1.x...
 - [`7a5943c3a`](https://github.com/genavarov/dashcash/commit/7a5943c3a) Merge pull request #1431 from bashpay/v0.12.2.x-merge_upstream
 - [`8bbcf6200`](https://github.com/genavarov/dashcash/commit/8bbcf6200) Fixed pow (test and algo) (#1415)
 - [`f3b92a95d`](https://github.com/genavarov/dashcash/commit/f3b92a95d) c++11: don't throw from the reverselock destructor (#1421)
-- [`b40f8f333`](https://github.com/genavarov/dashcash/commit/b40f8f333) Rename bitcoinconsensus library to bashconsensus. (#1432)
+- [`b40f8f333`](https://github.com/genavarov/dashcash/commit/b40f8f333) Rename bitcoinconsensus library to dashconsensus. (#1432)
 - [`28a1d0ecc`](https://github.com/genavarov/dashcash/commit/28a1d0ecc) Fix the same header included twice. (#1474)
 - [`adf97e12a`](https://github.com/genavarov/dashcash/commit/adf97e12a) fix travis ci mac build (#1483)
 - [`a28fa724c`](https://github.com/genavarov/dashcash/commit/a28fa724c) fix BIP34 starting blocks for mainnet/testnet (#1476)

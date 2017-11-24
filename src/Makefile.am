@@ -49,8 +49,8 @@ EXTRA_LIBRARIES += libbitcoin_zmq.a
 endif
 
 if BUILD_BITCOIN_LIBS
-lib_LTLIBRARIES = libbashconsensus.la
-LIBBITCOIN_CONSENSUS=libbashconsensus.la
+lib_LTLIBRARIES = libdashconsensus.la
+LIBBITCOIN_CONSENSUS=libdashconsensus.la
 else
 LIBBITCOIN_CONSENSUS=
 endif
@@ -480,10 +480,10 @@ bash_tx_LDADD = \
 bash_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
-# bashconsensus library #
+# dashconsensus library #
 if BUILD_BITCOIN_LIBS
-include_HEADERS = script/bashconsensus.h
-libbashconsensus_la_SOURCES = \
+include_HEADERS = script/dashconsensus.h
+libdashconsensus_la_SOURCES = \
   crypto/hmac_sha512.cpp \
   crypto/ripemd160.cpp \
   crypto/sha1.cpp \
@@ -492,20 +492,20 @@ libbashconsensus_la_SOURCES = \
   hash.cpp \
   primitives/transaction.cpp \
   pubkey.cpp \
-  script/bashconsensus.cpp \
+  script/dashconsensus.cpp \
   script/interpreter.cpp \
   script/script.cpp \
   uint256.cpp \
   utilstrencodings.cpp
 
 if GLIBC_BACK_COMPAT
-  libbashconsensus_la_SOURCES += compat/glibc_compat.cpp
+  libdashconsensus_la_SOURCES += compat/glibc_compat.cpp
 endif
 
-libbashconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
-libbashconsensus_la_LIBADD = $(LIBSECP256K1)
-libbashconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
-libbashconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libdashconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
+libdashconsensus_la_LIBADD = $(LIBSECP256K1)
+libdashconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
+libdashconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif
 #
