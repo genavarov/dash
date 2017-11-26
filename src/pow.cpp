@@ -34,8 +34,8 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const Conse
 	
     uint64_t pastSecondsMin = nTargetTimespan * 0.025;
     uint64_t pastSecondsMax = nTargetTimespan * 7;
-    uint64_t PastBlocksMin = pastSecondsMin / nTargetSpacing;
-    uint64_t PastBlocksMax = pastSecondsMax / nTargetSpacing;
+    uint64_t PastBlocksMin = pastSecondsMin / params.nPowTargetSpacing;
+    uint64_t PastBlocksMax = pastSecondsMax / params.nPowTargetSpacing;
 	}else{
     uint64_t pastSecondsMin = params.nPowTargetTimespan * 0.025;
     uint64_t pastSecondsMax = params.nPowTargetTimespan * 7;
