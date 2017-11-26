@@ -75,13 +75,13 @@ public:
         consensus.nSubsidyHalvingInterval = 210240; // Note: actual number of blocks per calendar year with DGW v3 is ~200700 (for example 449750 - 249050)
         consensus.nMasternodePaymentsStartBlock = 10000; // 100000 not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
         consensus.nMasternodePaymentsIncreaseBlock = 15800; // 158000 actual historical value
-        consensus.nMasternodePaymentsIncreasePeriod = 576*30; // 17280 - actual historical value
+        consensus.nMasternodePaymentsIncreasePeriod = 576*10; // 5760 17280 - actual historical value
         consensus.nInstantSendKeepLock = 24;
         consensus.nBudgetPaymentsStartBlock = 32800; // 328008 actual historical value
         consensus.nBudgetPaymentsCycleBlocks = 16616; // ~(60*24*30)/2.6, actual number of blocks per month is 200700 / 12 = 16725
         consensus.nBudgetPaymentsWindowBlocks = 100;
         consensus.nBudgetProposalEstablishingTime = 60*60*24;
-        consensus.nSuperblockStartBlock = 614820; // The block at which 12.1 goes live (end of final 12.0 budget cycle)
+        consensus.nSuperblockStartBlock = 65600; // The block at which 12.1 goes live (end of final 12.0 budget cycle)
         consensus.nSuperblockCycle = 16616; // ~(60*24*30)/2.6, actual number of blocks per month is 200700 / 12 = 16725
         consensus.nGovernanceMinQuorum = 10;
         consensus.nGovernanceFilterElements = 20000;
@@ -192,30 +192,30 @@ public:
     CTestNetParams() {
         strNetworkID = "test";
         consensus.nSubsidyHalvingInterval = 210240;
-        consensus.nMasternodePaymentsStartBlock = 4010; // not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
-        consensus.nMasternodePaymentsIncreaseBlock = 4030;
-        consensus.nMasternodePaymentsIncreasePeriod = 10;
-        consensus.nInstantSendKeepLock = 6;
-        consensus.nBudgetPaymentsStartBlock = 4100;
-        consensus.nBudgetPaymentsCycleBlocks = 50;
-        consensus.nBudgetPaymentsWindowBlocks = 10;
-        consensus.nBudgetProposalEstablishingTime = 60*20;
-        consensus.nSuperblockStartBlock = 4200; // NOTE: Should satisfy nSuperblockStartBlock > nBudgetPeymentsStartBlock
-        consensus.nSuperblockCycle = 24; // Superblocks can be issued hourly on testnet
-        consensus.nGovernanceMinQuorum = 1;
-        consensus.nGovernanceFilterElements = 500;
-        consensus.nMasternodeMinimumConfirmations = 1;
-        consensus.nMajorityEnforceBlockUpgrade = 51;
-        consensus.nMajorityRejectBlockOutdated = 75;
-        consensus.nMajorityWindow = 100;
+        consensus.nMasternodePaymentsStartBlock = 10000; // not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
+        consensus.nMasternodePaymentsIncreaseBlock = 15800;
+        consensus.nMasternodePaymentsIncreasePeriod = 576*10;
+        consensus.nInstantSendKeepLock = 24;
+        consensus.nBudgetPaymentsStartBlock = 32800;
+        consensus.nBudgetPaymentsCycleBlocks = 16616;
+        consensus.nBudgetPaymentsWindowBlocks = 100;
+        consensus.nBudgetProposalEstablishingTime = 60*60*24;
+        consensus.nSuperblockStartBlock = 65600; // NOTE: Should satisfy nSuperblockStartBlock > nBudgetPeymentsStartBlock
+        consensus.nSuperblockCycle = 16616; // Superblocks can be issued hourly on testnet
+        consensus.nGovernanceMinQuorum = 10;
+        consensus.nGovernanceFilterElements = 20000;
+        consensus.nMasternodeMinimumConfirmations = 15;
+        consensus.nMajorityEnforceBlockUpgrade = 750;
+        consensus.nMajorityRejectBlockOutdated = 950;
+        consensus.nMajorityWindow = 1000;
         consensus.BIP34Height = 0;
         consensus.BIP34Hash = uint256S("0x000001aa68cff147dbfcd59b873dd38941d9eac097c1c98f0aecc716b001c4ec");
         consensus.powLimit = uint256S("00000fffff000000000000000000000000000000000000000000000000000000");
         consensus.nPowTargetTimespan = 24 * 60 * 60; // Bash: 1 day
         consensus.nPowTargetSpacing = 2.5 * 60; // Bash: 2.5 minutes
-        consensus.fPowAllowMinDifficultyBlocks = true;
+        consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
-        consensus.nRuleChangeActivationThreshold = 1512; // 75% for testchains
+        consensus.nRuleChangeActivationThreshold = 1916; // 75% for testchains
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
@@ -247,7 +247,7 @@ public:
         nDefaultPort = 18899;
         nMaxTipAge = 0x7fffffff; // allow mining on top of old blocks for testnet
         nDelayGetHeadersTime = 24 * 60 * 60;
-        nPruneAfterHeight = 1000;
+        nPruneAfterHeight = 100000;
 
         genesis = CreateGenesisBlock(1512000000UL, 1070414UL, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
@@ -262,18 +262,18 @@ public:
         vSeeds.push_back(CDNSSeedData("dnsseed.exip.net", "dnsseed.exip.net"));
 
         // TestS addresses start with 'S'
-         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,63);
+        // base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,63);
         // TestS script addresses start with 'H'
-         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,40);
+        // base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,40);
         // TestS private keys start with '5'
-         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
+        // base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
 
         // Testnet Bash addresses start with 'y'
-        // base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);
+         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);
         // Testnet Bash script addresses start with '8' or '9'
-        // base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,19);
+         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,19);
         // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
-        // base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
+         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
         // Testnet Bash BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x35)(0x87)(0xCF).convert_to_container<std::vector<unsigned char> >();
         // Testnet Bash BIP32 prvkeys start with 'tprv' (Bitcoin defaults)

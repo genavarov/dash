@@ -26,12 +26,22 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const Conse
     double EventHorizonDeviation;
     double EventHorizonDeviationFast;
     double EventHorizonDeviationSlow;
-
+	
+	if (pindexLast->nHeight + 1 >= 7200){ // after block 7200
+	int64_t nPastBlocks = 2; //count blocks = 2	
+	// NOTE: is this accurate? nActualTimespan counts it for (nPastBlocks - 1) blocks only...
+    int64_t nTargetTimespan = nPastBlocks * params.nPowTargetSpacing;
+	
+    uint64_t pastSecondsMin = nTargetTimespan * 0.025;
+    uint64_t pastSecondsMax = nTargetTimespan * 7;
+    uint64_t PastBlocksMin = pastSecondsMin / nTargetSpacing;
+    uint64_t PastBlocksMax = pastSecondsMax / nTargetSpacing;
+	}else{
     uint64_t pastSecondsMin = params.nPowTargetTimespan * 0.025;
     uint64_t pastSecondsMax = params.nPowTargetTimespan * 7;
     uint64_t PastBlocksMin = pastSecondsMin / params.nPowTargetSpacing;
     uint64_t PastBlocksMax = pastSecondsMax / params.nPowTargetSpacing;
-
+	}
     if (BlockLastSolved == NULL || BlockLastSolved->nHeight == 0 || (uint64_t)BlockLastSolved->nHeight < PastBlocksMin) { return UintToArith256(params.powLimit).GetCompact(); }
 
     for (unsigned int i = 1; BlockReading && BlockReading->nHeight > 0; i++) {
@@ -175,12 +185,13 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
     // mainnet/regtest share a configuration
     if (Params().NetworkIDString() == CBaseChainParams::MAIN || Params().NetworkIDString() == CBaseChainParams::REGTEST) {
-        if (pindexLast->nHeight + 1 >= 34140) retarget = DIFF_DGW;
-        else if (pindexLast->nHeight + 1 >= 15200) retarget = DIFF_KGW;
+        if (pindexLast->nHeight + 1 >= 5760) retarget = DIFF_DGW;
+        else if (pindexLast->nHeight + 1 >= 7200) retarget = DIFF_KGW;
         else retarget = DIFF_BTC;
     // testnet -- we want a lot of coins in existance early on
     } else {
-        if (pindexLast->nHeight + 1 >= 4001) retarget = DIFF_DGW;
+        if (pindexLast->nHeight + 1 >= 5760) retarget = DIFF_DGW;
+        else if (pindexLast->nHeight + 1 >= 7200) retarget = DIFF_KGW;		
         else retarget = DIFF_BTC;
     }
 

@@ -1245,17 +1245,23 @@ CAmount GetBlockSubsidy(int nPrevBits, int nPrevHeight, const Consensus::Params&
         nSubsidyBase = (1111.0 / (pow((dDiff+1.0),2.0)));
         if(nSubsidyBase > 500) nSubsidyBase = 500;
         else if(nSubsidyBase < 100) nSubsidyBase = 100;
-    } else if (nPrevHeight < 7200 || (dDiff <= 75 && nPrevHeight < 14400)) {
+    } else if (nPrevHeight < 7200 || (dDiff <= 75 && nPrevHeight < 10000)) {
         // CPU mining era
         // 11111/(((x+51)/6)^2)
         nSubsidyBase = (11111.0 / (pow((dDiff+51.0)/6.0,2.0)));
         if(nSubsidyBase > 50) nSubsidyBase = 50;
         else if(nSubsidyBase < 25) nSubsidyBase = 25;
+    } else if (nPrevHeight < 10000 || (dDiff <= 75 && nPrevHeight < 15800)) {
+        // CPU mining era
+        // 11111/(((x+51)/6)^2)
+        nSubsidyBase = (11111.0 / (pow((dDiff+51.0)/6.0,2.0)));
+        if(nSubsidyBase > 50) nSubsidyBase = 25;
+        else if(nSubsidyBase < 25) nSubsidyBase = 12.5;
     } else {
         // GPU/ASIC mining era
         // 2222222/(((x+2600)/9)^2)
         nSubsidyBase = (2222222.0 / (pow((dDiff+2600.0)/9.0,2.0)));
-        if(nSubsidyBase > 25) nSubsidyBase = 25;
+        if(nSubsidyBase > 25) nSubsidyBase = 12.5;
         else if(nSubsidyBase < 5) nSubsidyBase = 5;
     }
 
@@ -1280,7 +1286,7 @@ CAmount GetMasternodePayment(int nHeight, CAmount blockValue)
     int nMNPIBlock = Params().GetConsensus().nMasternodePaymentsIncreaseBlock;
     int nMNPIPeriod = Params().GetConsensus().nMasternodePaymentsIncreasePeriod;
 
-                                                                      // mainnet:
+    /*                                                                  // mainnet:
     if(nHeight > nMNPIBlock)                  ret += blockValue / 20; // 158000 - 25.0% - 2014-10-24
     if(nHeight > nMNPIBlock+(nMNPIPeriod* 1)) ret += blockValue / 20; // 175280 - 30.0% - 2014-11-25
     if(nHeight > nMNPIBlock+(nMNPIPeriod* 2)) ret += blockValue / 20; // 192560 - 35.0% - 2014-12-26
@@ -1290,6 +1296,21 @@ CAmount GetMasternodePayment(int nHeight, CAmount blockValue)
     if(nHeight > nMNPIBlock+(nMNPIPeriod* 6)) ret += blockValue / 40; // 261680 - 45.0% - 2015-05-01
     if(nHeight > nMNPIBlock+(nMNPIPeriod* 7)) ret += blockValue / 40; // 278960 - 47.5% - 2015-06-01
     if(nHeight > nMNPIBlock+(nMNPIPeriod* 9)) ret += blockValue / 40; // 313520 - 50.0% - 2015-08-03
+    */
+	// mainnet:
+    if(nHeight > nMNPIBlock)                  ret += blockValue * 0.20; // 15800 - 20.0% - 2017-12-22
+    if(nHeight > nMNPIBlock+(nMNPIPeriod* 1)) ret += blockValue * 0.25; // 21560 - 25.0% - 2018-01-01
+    if(nHeight > nMNPIBlock+(nMNPIPeriod* 2)) ret += blockValue * 0.33; // 27320 - 33.0% - 2018-01-11
+    if(nHeight > nMNPIBlock+(nMNPIPeriod* 3)) ret += blockValue * 0.40; // 33080 - 40.0% - 2018-01-21
+    if(nHeight > nMNPIBlock+(nMNPIPeriod* 4)) ret += blockValue * 0.44; // 38840 - 44.0% - 2018-01-31
+    if(nHeight > nMNPIBlock+(nMNPIPeriod* 5)) ret += blockValue * 0.50; // 44500 - 50.0% - 2018-02-10
+    if(nHeight > nMNPIBlock+(nMNPIPeriod* 6)) ret += blockValue * 0.60; // 50360 - 60.0% - 2018-02-20
+    if(nHeight > nMNPIBlock+(nMNPIPeriod* 7)) ret += blockValue * 0.66; // 56120 - 66.0% - 2018-03-01
+    if(nHeight > nMNPIBlock+(nMNPIPeriod* 8)) ret += blockValue * 0.70; // 61880 - 70.0% - 2018-03-11
+    if(nHeight > nMNPIBlock+(nMNPIPeriod* 9)) ret += blockValue * 0.75; // 67640 - 75.0% - 2018-03-21
+    if(nHeight > nMNPIBlock+(nMNPIPeriod* 10)) ret += blockValue * 0.77; // 73400 - 77.0% - 2018-03-31
+    if(nHeight > nMNPIBlock+(nMNPIPeriod* 11)) ret += blockValue * 0.80; // 79160 - 80.0% - 2018-04-09
+//    if(nHeight > nMNPIBlock+(nMNPIPeriod* 12)) ret += blockValue * 0.90; // 84920 - 90.0% - 2018-04-19
 
     return ret;
 }
