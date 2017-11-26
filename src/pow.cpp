@@ -26,18 +26,20 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const Conse
     double EventHorizonDeviation;
     double EventHorizonDeviationFast;
     double EventHorizonDeviationSlow;
+	//uint64_t pastSecondsMin = 24 * 60 * 2.5 * 0.025;
+	//uint64_t pastSecondsMax = 24 * 60 * 2.5 * 7;
 	
-	if (pindexLast->nHeight + 1 >= 7200){ // after block 7200
+	//if (pindexLast->nHeight + 1 >= 7200){ // after block 7200
 	int64_t nPastBlocks = 2; //count blocks = 2	
 	// NOTE: is this accurate? nActualTimespan counts it for (nPastBlocks - 1) blocks only...
     int64_t nTargetTimespan = nPastBlocks * params.nPowTargetSpacing;
 	
     uint64_t pastSecondsMin = nTargetTimespan * 0.025;
     uint64_t pastSecondsMax = nTargetTimespan * 7;
-	}else{
-    uint64_t pastSecondsMin = params.nPowTargetTimespan * 0.025;
-    uint64_t pastSecondsMax = params.nPowTargetTimespan * 7;
-	}
+	//}else{
+    //uint64_t pastSecondsMin = params.nPowTargetTimespan * 0.025;
+    //uint64_t pastSecondsMax = params.nPowTargetTimespan * 7;
+	//}
     uint64_t PastBlocksMin = pastSecondsMin / params.nPowTargetSpacing;
     uint64_t PastBlocksMax = pastSecondsMax / params.nPowTargetSpacing;
 	
