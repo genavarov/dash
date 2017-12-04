@@ -71,7 +71,7 @@ script: |
   done
   export PATH=${WRAP_DIR}:${PATH}
 
-  cd bash
+  cd bashcore
   BASEPREFIX=`pwd`/depends
 
   mkdir -p ${BASEPREFIX}/SDKs
