@@ -142,6 +142,10 @@ public:
 
 
         vSeeds.push_back(CDNSSeedData("dnsnode.exip.net", "dnsnode.exip.net"));
+        vSeeds.push_back(CDNSSeedData("dnsnode1.exip.net", "dnsnode1.exip.net"));
+        vSeeds.push_back(CDNSSeedData("dnsnode2.exip.net", "dnsnode2.exip.net"));
+        vSeeds.push_back(CDNSSeedData("dnsnode3.exip.net", "dnsnode3.exip.net"));
+        vSeeds.push_back(CDNSSeedData("dnsnode4.exip.net", "dnsnode4.exip.net"));
         vSeeds.push_back(CDNSSeedData("dnsnodes.exip.net", "dnsnodes.exip.net"));
         vSeeds.push_back(CDNSSeedData("masternode.exip.net", "masternode.exip.net"));
         vSeeds.push_back(CDNSSeedData("dnsseed.exip.net", "dnsseed.exip.net"));
@@ -174,9 +178,10 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (  0, uint256S("0x000001aa68cff147dbfcd59b873dd38941d9eac097c1c98f0aecc716b001c4ec")),
-            1512000000, // * UNIX timestamp of last checkpoint block
-            3701128,    // * total number of transactions between genesis and last checkpoint
+            (  0, uint256S("0x000001aa68cff147dbfcd59b873dd38941d9eac097c1c98f0aecc716b001c4ec"))
+			(  5760, uint256S("0x000000a05c92c236b8149ddc4c85c54a9c392c97ebde2ed9cac1c0415c52117e")),
+            1512739408, // 1512000000 * UNIX timestamp of last checkpoint block
+            5771,    // 5771 * total number of transactions between genesis and last checkpoint
                         //   (the tx=... number in the SetBestChain debug.log lines)
             5000        // * estimated number of transactions per day after checkpoint
         };
@@ -257,6 +262,10 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         vSeeds.push_back(CDNSSeedData("dnsnode.exip.net", "dnsnode.exip.net"));
+        vSeeds.push_back(CDNSSeedData("dnsnode1.exip.net", "dnsnode1.exip.net"));
+        vSeeds.push_back(CDNSSeedData("dnsnode2.exip.net", "dnsnode2.exip.net"));
+        vSeeds.push_back(CDNSSeedData("dnsnode3.exip.net", "dnsnode3.exip.net"));
+        vSeeds.push_back(CDNSSeedData("dnsnode4.exip.net", "dnsnode4.exip.net"));
         vSeeds.push_back(CDNSSeedData("dnsnodes.exip.net", "dnsnodes.exip.net"));
         vSeeds.push_back(CDNSSeedData("masternode.exip.net", "masternode.exip.net"));
         vSeeds.push_back(CDNSSeedData("dnsseed.exip.net", "dnsseed.exip.net"));
@@ -296,12 +305,12 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (    0, uint256S("0x000001aa68cff147dbfcd59b873dd38941d9eac097c1c98f0aecc716b001c4ec")),
-
-            1512000000, // * UNIX timestamp of last checkpoint block
-            3094,       // * total number of transactions between genesis and last checkpoint
+            (    0, uint256S("0x000001aa68cff147dbfcd59b873dd38941d9eac097c1c98f0aecc716b001c4ec"))
+			(  4000, uint256S("0x000000aa55323fffad2be72468a84b8c1677503ba8110710678f3821f5d696c4")),
+            1512444773, // * UNIX timestamp of last checkpoint block
+            4010,       // * total number of transactions between genesis and last checkpoint
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            500         // * estimated number of transactions per day after checkpoint
+            5000         // * estimated number of transactions per day after checkpoint
         };
 
     }
