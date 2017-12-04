@@ -24,7 +24,7 @@ packages:
 reference_datetime: "2017-01-01 00:00:00"
 remotes:
 - "url": "https://github.com/genavarov/dashcash.git"
-  "dir": "bash"
+  "dir": "bashcore"
 files:
 - "MacOSX10.9.sdk.tar.gz"
 script: |
